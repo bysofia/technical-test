@@ -3,14 +3,14 @@ package routes
 import (
 	"nutech/handlers"
 	"nutech/pkg/middleware"
-	"nutech/pkg/mysql"
+	"nutech/pkg/postgre"
 	"nutech/repositories"
 
 	"github.com/gorilla/mux"
 )
 
 func ProductRoutes(r *mux.Router) {
-  productRepository := repositories.RepositoryProduct(mysql.DB)
+  productRepository := repositories.RepositoryProduct(postgre.DB)
   h := handlers.HandlerProduct(productRepository)
 
   r.HandleFunc("/product", middleware.Auth(middleware.UploadFile(h.CreateProduct))).Methods("POST")

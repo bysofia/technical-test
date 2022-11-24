@@ -3,14 +3,14 @@ package routes
 import (
 	"nutech/handlers"
 	"nutech/pkg/middleware"
-	"nutech/pkg/mysql"
+	"nutech/pkg/postgre"
 	"nutech/repositories"
 
 	"github.com/gorilla/mux"
 )
 
 func AuthRoutes(r *mux.Router) {
-	userRepository := repositories.RepositoryAuth(mysql.DB)
+	userRepository := repositories.RepositoryAuth(postgre.DB)
 	h := handlers.HandlerAuth(userRepository)
 
 	r.HandleFunc("/register", h.Register).Methods("POST")
