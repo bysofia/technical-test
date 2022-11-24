@@ -27,6 +27,8 @@ func main() {
 
 	routes.RouteInit(r.PathPrefix("/api/v1").Subrouter())
 
+	r.PathPrefix("/uploads").Handler(http.StripPrefix("/uploads/", http.FileServer(http.Dir("./uploads"))))
+
 	var port = os.Getenv("PORT")
 	fmt.Println("server running localhost:" + port)
 

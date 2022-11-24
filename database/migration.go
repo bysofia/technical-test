@@ -1,6 +1,7 @@
 package database
 
 import (
+	"fmt"
 	"nutech/models"
 	"nutech/pkg/mysql"
 )
@@ -12,6 +13,9 @@ func RunMigration() {
 	)
 
 	if err != nil {
-		
+		fmt.Println(err)
+		panic("Migration Failed")
 	}
+
+	fmt.Println("Migration Success")
 }
