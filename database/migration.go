@@ -3,11 +3,11 @@ package database
 import (
 	"fmt"
 	"nutech/models"
-	"nutech/pkg/mysql"
+	"nutech/pkg/postgre"
 )
 
 func RunMigration() {
-	err := mysql.DB.AutoMigrate(
+	err := postgre.DB.AutoMigrate(
 		&models.User{},
 		&models.Product{},
 	)
