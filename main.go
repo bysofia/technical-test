@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"net/http"
 	"nutech/database"
-	"nutech/pkg/mysql"
+	"nutech/pkg/postgre"
 	"nutech/routes"
 	"os"
 
@@ -19,7 +19,7 @@ func main() {
 		panic("Failed to load env file")
 	}
 
-	mysql.DatabaseInit()
+	postgre.DatabaseInit()
 
 	database.RunMigration()
 
