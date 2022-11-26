@@ -25,12 +25,12 @@ func UploadFile(next http.HandlerFunc) http.HandlerFunc {
 		}
 		defer file.Close()
 		
-		const MAX_UPLOAD_SIZE = 10 * 1024 // 100KB  
+		const MAX_UPLOAD_SIZE = 10 << 20 // 10MB  
 		
 		r.ParseMultipartForm(MAX_UPLOAD_SIZE)
 		if r.ContentLength > MAX_UPLOAD_SIZE {
 			w.WriteHeader(http.StatusBadRequest)
-			response := Result{Code: http.StatusBadRequest, Message: "Max size in 100KB"}
+			response := Result{Code: http.StatusBadRequest, Message: "Max size in 10MB"}
 			json.NewEncoder(w).Encode(response)
 			return
 		}
